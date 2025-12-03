@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+:root{
+  --primary: #ff6b3d;
+  --text: #111827;
+  --muted: #6b7280;
+  --card-radius: 12px;
+  --card-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  --white: #ffffff;
+}
+
+/* Global body / page container */
+body{
+  margin: 0;
+  font-family : 'Bebas Neue', sans-serif;
+    /* --- Style de l'élément principal du Header --- */
+  color: var(--text);
+  background: var(--white);
+
+.header {
+    background-color: var(--card-bg-color);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+    /* --- Style du Logo/Titre du Site --- */
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+    /* --- Style de la Navigation (Nav) --- */
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 15px; /* Espacement entre les "bulles" */
+}
+    /* --- Style des "Bulles Rectangle" des Liens de Navigation --- */
+.nav-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 10px 18px; /* Rembourrage intérieur de la bulle */
+    border-radius: 8px; /* Coins légèrement arrondis pour l'effet bulle */
+    background-color: transparent; /* Fond transparent par défaut */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: block; /* Important pour que le padding fonctionne bien */
+}
+/* --- Effet de Réactivité au Survol des Bulles --- */
+.nav-list a:hover {
+    background-color: var(--hover-bg-color); /* Change le fond au survol */
+    color: var(--hover-text-color); /* Change la couleur du texte au survol */
+    transform: translateY(-2px); /* Légère élévation pour l'effet "réactif" */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère au survol */
+}
+/* --- Style du bouton dans le menu (ex: Connexion/Inscription) --- */
+/* Ce bouton sera stylisé un peu différemment, car il a une couleur de fond par défaut */
+.nav-list .btn {
+    /* Utilise les styles de base du .btn que nous avions définis */
+    margin-left: 10px;
+    padding: 10px 20px; /* Adapte le padding pour correspondre aux bulles */
+    font-size: 1em; /* Taille de police légèrement plus grande pour le bouton */
+    border-radius: 8px; /* Assure que les coins sont aussi arrondis */
+    background-color: var(--primary-color); /* Couleur de fond par défaut */
+    color: var(--card-bg-color); /* Couleur de texte par défaut */
+    border: none; /* Pas de bordure par défaut */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-list .btn:hover {
+    background-color: #E04C2D; /* Assombrir légèrement au survol */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+}
+
+.contact-page{
+  max-width: 900px;
+  margin: 3.5rem auto;
+  padding: 2rem 5%;
+  box-sizing: border-box;
+}
+
+/* Contact card */
+.contact-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 28px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* Left info column */
+.contact-info{
+  flex: 1 1 360px;
+  min-width: 260px;
+}
+.contact-info h2{
+  margin: 0 0 .4rem;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+.contact-info p{
+  margin: .25rem 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* Actions / buttons */
+.contact-actions{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex: 0 0 auto;
+}
+
+/* Social / CTA buttons */
+.social-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--text);
+  background:rgba(15,23,42,0.04);
+  transition: transform .18s ease, box-shadow .18s ease, background .12s ease;
+  font-weight:700;
+  border: 1px solid rgba(15,23,42,0.04);
+}
+.social-btn:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+  background: rgba(255,255,255,0.98);
+}
+
+/* icon sizing inside buttons */
+.social-btn svg{
+  width:18px;
+  height:18px;
+  display:block;
+  flex-shrink:0;
+}
+
+/* prominent contact email link */
+.contact-email{
+  display:block;
+  margin-top:10px;
+  font-weight:700;
+  color:var(--primary);
+  text-decoration:none;
+}
+
+/* Utility / small screens */
+@media (max-width:720px){
+  .contact-card{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:20px;
+    gap:18px;
+  }
+  .contact-actions{
+    width:100%;
+    justify-content:space-between;
+    gap:10px;
+  }
+}
+
+/* Small visual polish */
+.contact-card .contact-info,
+.contact-card .contact-actions{
+  transition: all .18s ease;
+}
+/* Buttons */
+.btn{ display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:700; cursor:pointer; }
+.btn-primary{ background:var(--primary); color:var(--white); box-shadow:0 8px 20px rgba(255,107,61,0.12); }
+.btn-outline, .btn-secondary{ background:transparent; color:var(--text); border:1px solid rgba(0,0,0,0.08); }
+.btn-large{ padding:12px 20px; font-size:1rem; }
+}

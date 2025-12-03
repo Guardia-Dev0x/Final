@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+
+:root{
+    --primary: #ff6b3d;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+
+.login{
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.9));
+    padding:24px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+    max-width:420px;
+    margin:80px auto;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+#email, #password {
+    width:86%;
+    padding:10px;
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:6px;
+    background:var(--white);
+    color:var(--black);
+}
+#send{
+    background:var(--primary);
+    color:var(--white);
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+}
+.login-heading{ margin-bottom:6px; color:var(--black); font-weight:700; }
+/* Assurer le chargement et l'application de la police */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* Appliquer la police principale aux éléments de la page de login.
+   On définit aussi des fontes de secours et on force les champs / boutons
+   à utiliser une fonte lisible (Poppins) pour le texte d'entrée. */
+html, body, .login, .login * {
+    font-family: 'Bebas Neue', 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Garder les champs de formulaire lisibles : Poppins en priorité pour inputs/textarea/button */
+input, textarea, button, #username, #password, #send {
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Titre : utiliser explicitement Bebas Neue (effet display) */
+.login-heading{
+    font-family: 'Bebas Neue', 'Poppins', sans-serif;
+    letter-spacing: 0.6px;
+    font-size: 1.35rem;
+}
+
+/* Si une autre feuille de style impose une police, utiliser une règle plus spécifique */
+.login, .login-heading, .login input, .login textarea, .login button {
+    font-family: 'Bebas Neue', 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}

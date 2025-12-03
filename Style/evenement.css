@@ -1,0 +1,204 @@
+/* Événements — style cohérent avec styles.css + boutons orange + effets bulles */
+
+:root{
+  --primary: #ff6b3d;   /* orange principal */
+  --primary-500: #ff7b53;
+  --accent: #0d6efd;
+  --bg: #ffffff;
+  --muted: #6b7280;
+  --text: #111827;
+  --card-radius: 12px;
+  --card-shadow: 0 10px 30px rgba(15,23,42,0.08);
+  --card-hover-shadow: 0 18px 50px rgba(15,23,42,0.12);
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+/* Reset & base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+
+/* Subtle animated bubble background for the calendar area */
+.calendar-wrap{
+  position:relative;
+  overflow:visible;
+}
+.calendar-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-40px -10% -10% -10%;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,107,61,0.06) 0 8%, transparent 9%),
+    radial-gradient(circle at 85% 10%, rgba(13,110,253,0.04) 0 10%, transparent 11%),
+    radial-gradient(circle at 60% 80%, rgba(255,107,61,0.04) 0 12%, transparent 13%),
+    radial-gradient(circle at 30% 70%, rgba(13,110,253,0.03) 0 14%, transparent 15%);
+  transform: translateY(0);
+  animation: bubblesFloat 10s linear infinite;
+  filter: blur(8px) saturate(1.05);
+  border-radius: 18px;
+}
+@keyframes bubblesFloat{
+  0%{ transform: translateY(0) rotate(0deg); opacity: .95; }
+  50%{ transform: translateY(-8px) rotate(2deg); opacity: .98; }
+  100%{ transform: translateY(0) rotate(0deg); opacity: .95; }
+}
+
+/* Header consistent with styles.css */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 5%;
+  position:sticky;
+  top:0;
+  z-index:1200;
+  background:transparent;
+  gap:1rem;
+}
+.logo{ font-weight:700; color:var(--text); font-size:1.1rem; letter-spacing:-0.4px; }
+
+/* Layout: sidebar (form) + calendar */
+.page-grid{
+  max-width:var(--max-width);
+  margin:20px auto;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns: 340px 1fr;
+  gap:24px;
+  align-items:start;
+  position:relative;
+  z-index:2;
+}
+
+/* Panel / form card */
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+  border-radius:var(--card-radius);
+  padding:20px;
+  box-shadow:var(--card-shadow);
+  border:1px solid rgba(15,23,42,0.04);
+  position:relative;
+  z-index:3;
+}
+.panel h2{ margin:0 0 12px; font-size:1.15rem; }
+.event-form label{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px; font-weight:600; }
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form input[type="time"],
+.event-form input[type="color"],
+.event-form textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.06);
+  margin-bottom:10px;
+  font-size:14px;
+  color:var(--text);
+  background:#fff;
+}
+.event-form textarea{ min-height:84px; resize:vertical; }
+
+/* two-column rows in form */
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:8px; }
+
+/* actions with orange bubble buttons */
+.form-actions{ display:flex; gap:10px; align-items:center; margin-top:8px; }
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px; /* bubble / pill */
+  font-weight:700;
+  cursor:pointer;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
+  position:relative;
+  overflow:visible;
+  border: none;
+}
+
+/* Secondary button with soft outline and small bubble */
+.btn-secondary{
+  background: rgba(255,107,61,0.06);
+  color: var(--primary);
+  border: 1px solid rgba(255,107,61,0.12);
+}
+
+/* helper text */
+.muted{ font-size:13px; color:var(--muted); margin-top:8px; }
+
+/* Week list (compact) */
+.week-list{ margin-top:12px; z-index:3; position:relative; }
+.compact-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.compact-list li{
+  padding:10px; border-radius:10px;
+  background:linear-gradient(180deg, #fff, #fbfbfb);
+  border:1px solid rgba(15,23,42,0.03);
+  display:flex; flex-direction:column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.compact-list li:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,0.06); }
+.compact-list li .meta{ font-size:13px; color:var(--muted); margin-bottom:6px; }
+.compact-list li .title{ font-weight:700; color:var(--text); }
+
+/* Calendar container */
+.calendar-wrap{ position:relative; z-index:1; }
+#calendar{
+  background:var(--bg);
+  border-radius:var(--card-radius);
+  padding:16px;
+  box-shadow:var(--card-shadow);
+  border:1px solid rgba(15,23,42,0.04);
+  position:relative;
+}
+
+/* FullCalendar theme tweaks to match styles.css + bubble buttons in toolbar */
+.fc { font-family: 'Poppins', sans-serif; color:var(--text); }
+.fc-toolbar { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.fc-toolbar .fc-left, .fc-toolbar .fc-center, .fc-toolbar .fc-right { display:flex; gap:8px; align-items:center; }
+.fc-toolbar-title{ font-size:1.15rem; font-weight:700; color:var(--text); }
+.fc .fc-button{
+  border-radius:999px; padding:6px 12px; border:1px solid rgba(15,23,42,0.06); background:transparent; color:var(--text); font-weight:600;
+  transition: transform .12s ease, box-shadow .12s ease;
+  position:relative;
+}
+.fc .fc-button:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,0.06); }
+.fc .fc-button-primary{
+  background: linear-gradient(90deg,var(--primary),var(--primary-500)); color:#fff; border:none;
+  box-shadow: 0 12px 30px rgba(255,107,61,0.12);
+}
+.fc .fc-button-primary::after{
+  content:""; position:absolute; inset:-6px; z-index:-1; border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,123,83,0.10), transparent 30%);
+  filter: blur(6px);
+}
+
+/* Event visual tweaks */
+.fc .fc-daygrid-event, .fc-event { border-radius:10px; padding:6px 8px; font-weight:700; box-shadow:none; }
+.fc-list-item{ border-radius:10px; padding:10px; margin-bottom:8px; background:linear-gradient(180deg,#fff,#fbfbfb); border:1px solid rgba(15,23,42,0.04); }
+.fc-list-item:hover{ box-shadow:var(--card-hover-shadow); transform:translateY(-4px); transition:all .18s ease; }
+
+/* Empty state */
+.empty-state{ text-align:center; padding:28px; color:var(--muted); border-radius:10px; }
+
+/* Footer */
+.footer{ text-align:center; padding:20px 5%; color:var(--muted); }
+
+/* Responsive */
+@media (max-width:980px){
+  .page-grid{ grid-template-columns: 1fr; padding:0 16px; }
+  .panel{ order:2 }
+  .calendar-wrap{ order:1 }
+  .form-row{ grid-template-columns:1fr; }
+}
+
+/* small decorative floating bubbles for cards/buttons (performance-friendly) */
+@media (prefers-reduced-motion: no-preference){
+  .btn-primary, .btn-secondary, .fc .fc-button-primary{
+    will-change: transform;
+  }
+}
